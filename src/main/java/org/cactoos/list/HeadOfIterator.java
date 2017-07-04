@@ -36,7 +36,7 @@ import java.util.NoSuchElementException;
  * @param <T> Element type
  * @since 0.8
  */
-public final class SkippedIterator<T> implements Iterator<T> {
+public final class HeadOfIterator<T> implements Iterator<T> {
 
     /**
      * Decorated iterator.
@@ -53,7 +53,7 @@ public final class SkippedIterator<T> implements Iterator<T> {
      * @param iterator Decorated iterator
      * @param skip Count skip elements
      */
-    public SkippedIterator(final Iterator<T> iterator, final int skip) {
+    public HeadOfIterator(final Iterator<T> iterator, final int skip) {
         this.iterator = iterator;
         this.skip = skip;
     }

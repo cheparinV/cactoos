@@ -29,20 +29,20 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test Case for {@link SkippedIterator}.
+ * Test Case for {@link HeadOfIterator}.
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
  * @since 0.8
  * @checkstyle JavadocMethodCheck (500 lines)
  */
-public final class SkippedIteratorTest {
+public final class HeadOfIteratorTest {
 
     @Test
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void skipIterator() throws Exception {
         MatcherAssert.assertThat(
             "Can't skip elements in iterator",
-            () -> new SkippedIterator<>(
+            () -> new HeadOfIterator<>(
                 new ArrayAsIterable<>(
                     "one", "two", "three", "four"
                 ).iterator(),
@@ -57,7 +57,7 @@ public final class SkippedIteratorTest {
 
     @Test(expected = NoSuchElementException.class)
     public void errorSkippedMoreThanExists() throws Exception {
-        new SkippedIterator<>(
+        new HeadOfIterator<>(
             new ArrayAsIterable<>(
                 "one", "two"
             ).iterator(),
