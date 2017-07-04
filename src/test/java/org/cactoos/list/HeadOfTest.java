@@ -23,42 +23,35 @@
  */
 package org.cactoos.list;
 
-import java.util.Iterator;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
 
 /**
- * Skipped iterable.
- *
- * <p>There is no thread-safety guarantee.</p>
- *
+ * Test Case for {@link HeadOf}.
  * @author Ilia Rogozhin (ilia.rogozhin@gmail.com)
  * @version $Id$
- * @param <T> Element type
  * @since 0.8
+ * @checkstyle JavadocMethodCheck (500 lines)
  */
-public final class SkippedIterable<T> implements Iterable<T> {
+public final class HeadOfTest {
 
-    /**
-     * Decorated iterable.
-     */
-    private final Iterable<T> iterable;
-
-    /**
-     * Count skip elements.
-     */
-    private final int skip;
-
-    /**
-     * Ctor.
-     * @param iterable Decorated iterable
-     * @param skip Count skip elements
-     */
-    public SkippedIterable(final Iterable<T> iterable, final int skip) {
-        this.iterable = iterable;
-        this.skip = skip;
+    @Test
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
+    public void skipIterable() throws Exception {
+        MatcherAssert.assertThat(
+            "Can't skip elements in iterable",
+            new HeadOf<>(
+                new ArrayAsIterable<>(
+                    "one", "two", "three", "four"
+                ),
+                2
+            ),
+            Matchers.contains(
+                "three",
+                "four"
+            )
+        );
     }
 
-    @Override
-    public Iterator<T> iterator() {
-        return new SkippedIterator<>(this.iterable.iterator(), this.skip);
-    }
 }
